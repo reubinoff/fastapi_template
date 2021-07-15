@@ -12,7 +12,7 @@ from starlette.requests import Request
 from fastapi_best_practice.config import configuration
 
 
-engine = create_engine(str(configuration.sql_uri))
+engine = create_engine(str(configuration.sql_uri), connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(bind=engine)
 
 

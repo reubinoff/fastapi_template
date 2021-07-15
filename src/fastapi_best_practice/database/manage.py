@@ -1,0 +1,42 @@
+from sqlalchemy.schema import CreateSchema
+
+from sqlalchemy_utils import create_database, database_exists
+from alembic.config import Config as AlembicConfig
+from alembic import command as alembic_command
+
+from fastapi_best_practice.config import configuration
+
+from .core import Base, sessionmaker
+
+def version_schema(script_location: str):
+    """Applies alembic versioning to schema."""
+
+    # add it to alembic table
+    alembic_cfg = AlembicConfig(configuration.alembix_ini)
+    alembic_cfg.set_main_option("script_location", script_location)
+    alembic_command.stamp(alembic_cfg, "head")
+
+def get_core_tables():
+    """Fetches tables are belong to the 'dispatch_core' schema."""
+    core_tables = []
+    for _, table in Base.metadata.tables.items():
+        if table.schema == "dispatch_core":
+            core_tables.append(table)
+    return core_tables
+
+
+def init_database(engine):
+    """Initializes a the database."""
+    if not database_exists(str(configuration.sql_uri)):
+        create_database(str(configuration.sql_uri))
+
+    schema_name = "dispatch_core"
+    if not engine.dialect.has_schema(engine, schema_name):
+        with engine.connect() as connection:
+            connection.execute(CreateSchema(schema_name))
+
+    tables = get_core_tables()
+
+    Base.metadata.create_all(engine, tables=tables)
+
+  
