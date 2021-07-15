@@ -17,6 +17,7 @@ pydantic = {extras = ["dotenv"], version = "^1.8.2"}
 sentry-asgi = "^0.2.0"
 SQLAlchemy-Utils = "^0.37.8"
 aiohttp = "^3.7.4"
+sqlalchemy-filters = "^0.12.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"

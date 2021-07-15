@@ -23,7 +23,7 @@ configure_logging()
 configure_extensions()
 
 # we create the Web API framework
-api = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+api = FastAPI(docs_url="/moshe")
 
 
 def get_path_params_from_request(request: Request) -> str:

@@ -487,6 +487,24 @@ pymysql = ["pymysql (<1)", "pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
+name = "sqlalchemy-filters"
+version = "0.12.0"
+description = "A library to filter SQLAlchemy queries."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = ">=1.10.0"
+sqlalchemy = ">=1.0.16"
+
+[package.extras]
+dev = ["pytest (>=4.6.9)", "coverage (>=5.0.4,<5.1.0)", "sqlalchemy-utils (>=0.36.3,<0.37.0)", "flake8", "restructuredtext-lint", "pygments"]
+mysql = ["mysql-connector-python-rf (==2.2.2)"]
+postgresql = ["psycopg2 (==2.8.4)"]
+python2 = ["funcsigs (>=1.0.2)"]
+
+[[package]]
 name = "sqlalchemy-utils"
 version = "0.37.8"
 description = "Various utility functions for SQLAlchemy."
@@ -584,7 +602,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a22c40ea1b5750c4f15fb5ffbba7c3b769c62745b6da932fee37fb92e3f3b206"
+content-hash = "e5fa3910a1ae95a36228179f7775982532587956412781aabbf12d858cd966d0"
 
 [metadata.files]
 aiohttp = [
@@ -1035,6 +1053,10 @@ sqlalchemy = [
     {file = "SQLAlchemy-1.4.21-cp39-cp39-win32.whl", hash = "sha256:640fc3556a1022a781f3f07fd5dc9da842ef87f873139402d5d98d64d776360f"},
     {file = "SQLAlchemy-1.4.21-cp39-cp39-win_amd64.whl", hash = "sha256:5042a7d43a8e0a8ffc8d2acacbd5fad1edf8336c376714632a5c61eff56ac06e"},
     {file = "SQLAlchemy-1.4.21.tar.gz", hash = "sha256:07e9054f4df612beadd12ca8a5342246bffcad74a1fa8df1368d1f2bb07d8fc7"},
+]
+sqlalchemy-filters = [
+    {file = "sqlalchemy-filters-0.12.0.tar.gz", hash = "sha256:fbbdd98c7dd1e122b4b8ec979514d39d5fc72d3835086f8c013705aa52b2e2a6"},
+    {file = "sqlalchemy_filters-0.12.0-py3-none-any.whl", hash = "sha256:92fad103611c02c8667f5d892afd3fa8d450eeeb79d70cfff9c9fe77d91ec805"},
 ]
 sqlalchemy-utils = [
     {file = "SQLAlchemy-Utils-0.37.8.tar.gz", hash = "sha256:a6aaee154f798be4e479af0ceffaa5034d35fcf6f40707c0947d21bde64e05e5"},

@@ -25,6 +25,10 @@ def resolve_table_name(name):
 raise_attribute_error = object()
 
 
+
+
+
+
 def resolve_attr(obj, attr, default=None):
     """Attempts to access attr via dotted notation, returns none if attr does not exist."""
     try:
@@ -44,3 +48,31 @@ Base = declarative_base(cls=CustomBase)
 
 def get_db(request: Request):
     return request.state.db
+
+
+
+def get_model_name_by_tablename(table_fullname: str) -> str:
+    """Returns the model name of a given table."""
+    return get_class_by_tablename(table_fullname=table_fullname).__name__
+
+
+def get_class_by_tablename(table_fullname: str) -> Any:
+    """Return class reference mapped to table."""
+
+    def _find_class(name):
+        for c in Base._decl_class_registry.values():
+            if hasattr(c, "__table__"):
+                if c.__table__.fullname.lower() == name.lower():
+                    return c
+
+    mapped_name = resolve_table_name(table_fullname)
+    mapped_class = _find_class(mapped_name)
+
+    # try looking in the 'dispatch_core' schema
+    if not mapped_class:
+        mapped_class = _find_class(f"dispatch_core.{mapped_name}")
+
+    if not mapped_class:
+        raise Exception(f"Incorrect tablename '{mapped_name}'. Check the name of your model.")
+
+    return mapped_class
