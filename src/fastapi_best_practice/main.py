@@ -28,9 +28,3 @@ app = VersionedFastAPI(app,
     enable_latest=True,
     middleware=get_middlewares()
 )
-
-logger.info("Starting...")
-logger.warning("Starting...")
-logger.error("Starting...")
-logger.debug("Starting...")
-
