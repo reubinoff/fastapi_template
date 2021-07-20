@@ -5,7 +5,7 @@ description = ""
 authors = ["Moshe Reubinoff <moshe@ownbackup.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 alembic = "^1.6.5"
 click = "^8.0.1"
 fastapi = "^0.66.0"
@@ -18,6 +18,8 @@ sentry-asgi = "^0.2.0"
 SQLAlchemy-Utils = "^0.37.8"
 aiohttp = "^3.7.4"
 sqlalchemy-filters = "^0.12.0"
+colorlog = "^5.0.1"
+fastapi-versioning = "^0.9.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"

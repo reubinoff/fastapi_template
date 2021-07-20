@@ -3,6 +3,7 @@ from fastapi.openapi.docs import get_redoc_html
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
 from fastapi_best_practice.item.views import router as items_router
+from fastapi_best_practice.product.views import router as products_router
 from fastapi_best_practice.auth.services import get_current_user
 
 api_router = APIRouter(
@@ -16,7 +17,9 @@ authenticated_api_router = APIRouter()
 authenticated_api_router.include_router(
     items_router, prefix="/items", tags=["items"]
 )
-
+authenticated_api_router.include_router(
+    products_router, prefix="/products", tags=["products"]
+)
 
 
 

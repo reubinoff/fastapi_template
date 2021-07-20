@@ -1,4 +1,4 @@
-
+from fastapi_versioning import version
 from fastapi import APIRouter, Depends, HTTPException
 
 from sqlalchemy.orm import Session
@@ -15,6 +15,7 @@ router = APIRouter()
 
 
 @router.get("", response_model=OurBase)
+@version(1)
 def get_items(*, common: dict = Depends(common_parameters)):
     """
     Get all item.
@@ -23,6 +24,7 @@ def get_items(*, common: dict = Depends(common_parameters)):
 
 
 @router.get("/{item_id}", response_model=ItemRead)
+@version(2)
 def get_item(*, db_session: Session = Depends(get_db), item_id: int):
     """
     Update a item.
@@ -34,6 +36,7 @@ def get_item(*, db_session: Session = Depends(get_db), item_id: int):
 
 
 @router.post("", response_model=ItemCreate)
+@version(1.1)
 def create_item(*, db_session: Session = Depends(get_db), item_in: ItemCreate):
     """
     Create a new item.

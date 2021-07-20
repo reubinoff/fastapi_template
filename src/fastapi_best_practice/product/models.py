@@ -14,25 +14,25 @@ from fastapi_best_practice.database.core import Base
 from fastapi_best_practice.models import BaseModel
 from fastapi_best_practice.models import OurBase
 
-class Item(Base):
+class Product(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(String)
 
 
 ############################################################
-class ItemBase(BaseModel):
+class ProductBase(BaseModel):
     id: Optional[int]
     name: str
     description: Optional[str]
  
-class ItemRead(ItemBase):
+class ProductRead(ProductBase):
     id: Optional[int]
 
-class ItemCreate(ItemBase):
+class ProductCreate(ProductBase):
     pass
 
 
-class ItemPagination(BaseModel):
+class ProductPagination(BaseModel):
     total: int
-    items: List[ItemRead] = []
+    items: List[ProductRead] = []
