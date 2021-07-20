@@ -1,35 +1,19 @@
 import logging
-import colorlog
-from colorlog import ColoredFormatter
+import logging.config
+import yaml
+import os
+
 
 from fastapi_best_practice.config import configuration
 from fastapi.logger import logger
 
 
-formatter = ColoredFormatter(
-	"%(log_color)s%(levelname)-8s>> %(reset)s %(blue)s%(message)s",
-	datefmt=None,
-	reset=True,
-	log_colors={
-		'DEBUG':    'cyan',
-		'INFO':     'green',
-		'WARNING':  'yellow',
-		'ERROR':    'red',
-		'CRITICAL': 'red,bg_white',
-	},
-	secondary_log_colors={},
-	style='%'
-)
+def configure_logging(log_level=configuration.log_level) -> None:
+	log_config = f"{os.path.dirname(os.path.realpath(__file__))}/logging.yml"
+	with open(log_config, 'r') as stream:
+		config = yaml.load(stream, Loader=yaml.FullLoader)
+		config["root"]["level"] = log_level
+		logging.config.dictConfig(config)
+    
 
-def configure_logging(log_level=configuration.log_level):
-    if log_level == "DEBUG":
-        handler = colorlog.StreamHandler()
-        handler.setFormatter(formatter)
-        handler.setLevel(log_level)
-        logger.handlers = []
-
-        logger.addHandler(handler)
-        
-    else:
-        logging.basicConfig(level=log_level)
 

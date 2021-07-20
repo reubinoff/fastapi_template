@@ -25,6 +25,4 @@ class Configuration(BaseSettings):
 
 
 
-
-
 configuration = Configuration()

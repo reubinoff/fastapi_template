@@ -1,0 +1,22 @@
+version: 1
+disable_existing_loggers: False
+formatters:
+    colorlog:
+      '()': 'colorlog.ColoredFormatter'
+      format: "[%(cyan)s%(asctime)s%(reset)s][%(purple)sOB%(reset)s][%(log_color)s%(levelname)s%(reset)s]\t %(message)s"
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: colorlog
+        stream: ext://sys.stdout
+    
+loggers:
+    uvicorn:
+        level: INFO
+        handlers: [console]
+        propagate: no
+  
+root:
+    level: INFO
+    handlers: [console]

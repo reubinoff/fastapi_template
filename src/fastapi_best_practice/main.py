@@ -1,6 +1,3 @@
-import time
-import logging
-from os import path
 
 from fastapi_versioning import VersionedFastAPI
 
@@ -33,3 +30,7 @@ app = VersionedFastAPI(app,
 )
 
 logger.info("Starting...")
+logger.warning("Starting...")
+logger.error("Starting...")
+logger.debug("Starting...")
+
