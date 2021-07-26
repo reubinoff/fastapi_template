@@ -45,7 +45,7 @@ def get_item(*, db_session: Session = Depends(get_db), item_id: int):
 
 
 @router.post("", response_model=ItemCreate)
-@version(1.1)
+@version(1)
 def create_item(*, db_session: Session = Depends(get_db), item_in: ItemCreate):
     """
     Create a new item.
