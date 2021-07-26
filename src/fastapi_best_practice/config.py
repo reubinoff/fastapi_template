@@ -14,9 +14,7 @@ class Configuration(BaseSettings):
     sentry_dsn: str = ""
     app_name: str = "Awesome Project"
     admin_email: str
-
     some_model: SettingOfSomeModel = SettingOfSomeModel()
-
     sql_uri = "sqlite:///foo.db"
     alembix_ini = f"{os.path.dirname(os.path.realpath(__file__))}/alembic.ini",
 

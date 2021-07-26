@@ -7,6 +7,7 @@ from fastapi_best_practice.logging import configure_logging
 from fastapi_best_practice.extentions import configure_extensions
 from fastapi_best_practice.api import api_router
 from fastapi_best_practice.middlewares import get_middlewares
+from fastapi_best_practice.config import configuration
 from fastapi.logger import logger
 
 
@@ -28,3 +29,5 @@ app = VersionedFastAPI(app,
     enable_latest=True,
     middleware=get_middlewares()
 )
+
+logger.info(f"Start the application: {configuration.app_name} running on env: {configuration.env}")

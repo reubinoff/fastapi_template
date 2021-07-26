@@ -8,7 +8,10 @@
             "name": "Server Debug",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/run.py"
+            "program": "${workspaceFolder}/bin/run.py",
+            "env": {
+                "env": "env_var"
+            }
           },
     ]
 }
