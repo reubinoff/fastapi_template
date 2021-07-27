@@ -11,7 +11,6 @@ from sqlalchemy import (
     DateTime,
 )
 from fastapi_best_practice.database.core import Base
-from fastapi_best_practice.models import BaseModel
 from fastapi_best_practice.models import OurBase
 
 class Settings(Base):
@@ -21,7 +20,7 @@ class Settings(Base):
 
 
 ############################################################
-class SettingsBase(BaseModel):
+class SettingsBase(OurBase):
     admin_mail: Optional[int]
     run_standalone: bool
     description: Optional[str]

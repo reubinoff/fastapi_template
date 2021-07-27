@@ -11,7 +11,7 @@ from sqlalchemy import (
     DateTime,
 )
 from fastapi_best_practice.database.core import Base
-from fastapi_best_practice.models import BaseModel
+from fastapi_best_practice.models import OurBase
 from fastapi_best_practice.models import OurBase
 
 
@@ -27,8 +27,7 @@ class Item(Base):
 ############################################################
 # Pydantic models...
 ############################################################
-class ItemBase(BaseModel):
-    id: Optional[int]
+class ItemBase(OurBase):
     name: str
     description: Optional[str]
  
@@ -39,6 +38,6 @@ class ItemCreate(ItemBase):
     pass
 
 
-class ItemPagination(BaseModel):
+class ItemPagination(OurBase):
     total: int
     items: List[ItemRead] = []

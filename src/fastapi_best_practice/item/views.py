@@ -44,7 +44,7 @@ def get_item(*, db_session: Session = Depends(get_db), item_id: int):
     return item
 
 
-@router.post("", response_model=ItemCreate)
+@router.post("", response_model=ItemRead)
 @version(1)
 def create_item(*, db_session: Session = Depends(get_db), item_in: ItemCreate):
     """

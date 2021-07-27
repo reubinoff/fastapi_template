@@ -11,7 +11,6 @@ from sqlalchemy import (
     DateTime,
 )
 from fastapi_best_practice.database.core import Base
-from fastapi_best_practice.models import BaseModel
 from fastapi_best_practice.models import OurBase
 
 class Product(Base):
@@ -21,7 +20,7 @@ class Product(Base):
 
 
 ############################################################
-class ProductBase(BaseModel):
+class ProductBase(OurBase):
     id: Optional[int]
     name: str
     description: Optional[str]
@@ -33,6 +32,6 @@ class ProductCreate(ProductBase):
     pass
 
 
-class ProductPagination(BaseModel):
+class ProductPagination(OurBase):
     total: int
     items: List[ProductRead] = []
