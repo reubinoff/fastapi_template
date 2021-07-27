@@ -14,16 +14,25 @@ from fastapi_best_practice.database.core import Base
 from fastapi_best_practice.models import OurBase
 
 class Settings(Base):
-    test = Column(String(16), primary_key=True, nullable=False)
-    run_standalone = Column(Boolean)
-    description = Column(String(50))
+    id = Column(Integer, primary_key=True)
+    key = Column(String(32))
+    value = Column(String(100))
 
 
 ############################################################
 class SettingsBase(OurBase):
-    admin_mail: Optional[int]
-    run_standalone: bool
-    description: Optional[str]
- 
-class SettingsRead(SettingsBase):
+    id: Optional[int]
+    key: str
+    value: str
+
+class SettingsCreate(SettingsBase):
     pass
+
+class SettingsRead(SettingsBase):
+    id: int
+    def get_value(self):
+        return self.value
+
+
+class SettingsList(OurBase):
+    items: List[SettingsRead] = []
