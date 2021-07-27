@@ -16,8 +16,8 @@ from fastapi_best_practice.models import OurBase
 
 class Product(Base):
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(String)
+    name = Column(String(32))
+    description = Column(String(50))
 
 
 ############################################################

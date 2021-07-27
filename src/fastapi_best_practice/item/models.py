@@ -14,12 +14,18 @@ from fastapi_best_practice.database.core import Base
 from fastapi_best_practice.models import BaseModel
 from fastapi_best_practice.models import OurBase
 
+
+############################################################
+# SQL models...
+############################################################
 class Item(Base):
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(String)
+    name = Column(String(32))
+    description = Column(String(50))
 
 
+############################################################
+# Pydantic models...
 ############################################################
 class ItemBase(BaseModel):
     id: Optional[int]

@@ -17,8 +17,6 @@ def get_all(*, db_session) -> List[Optional[Item]]:
 
 def create(*, db_session, item_in: ItemCreate) -> Item:
     """Creates a new item."""
-    project = None
-
     item = Item(**item_in.dict())
 
     db_session.add(item)

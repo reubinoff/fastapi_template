@@ -11,8 +11,8 @@ from starlette.requests import Request
 
 from fastapi_best_practice.config import configuration
 
-
-engine = create_engine(str(configuration.sql_uri), connect_args={"check_same_thread": False})
+SQL_URI = f"mysql+pymysql://root:{configuration.db_pass}@{configuration.db_host}/{configuration.db_name}"
+engine = create_engine(str(SQL_URI))
 SessionLocal = sessionmaker(bind=engine)
 
 
@@ -68,9 +68,9 @@ def get_class_by_tablename(table_fullname: str) -> Any:
     mapped_name = resolve_table_name(table_fullname)
     mapped_class = _find_class(mapped_name)
 
-    # try looking in the 'dispatch_core' schema
+    # try looking in the '' schema
     if not mapped_class:
-        mapped_class = _find_class(f"dispatch_core.{mapped_name}")
+        mapped_class = _find_class(f"{configuration.db_name}.{mapped_name}")
 
     if not mapped_class:
         raise Exception(f"Incorrect tablename '{mapped_name}'. Check the name of your model.")

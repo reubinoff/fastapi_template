@@ -24,7 +24,5 @@ RUN poetry install --no-root --no-dev
 COPY --chown=$USER:$USER src/ .
 
 ENV MODULE_NAME="fastapi_best_practice.main"
-# CMD ["ls", "-l"]
-
 
 

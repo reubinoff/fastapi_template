@@ -15,9 +15,9 @@ from fastapi_best_practice.models import BaseModel
 from fastapi_best_practice.models import OurBase
 
 class Settings(Base):
-    admin_mail = Column(String, primary_key=True)
+    test = Column(String(16), primary_key=True, nullable=False)
     run_standalone = Column(Boolean)
-    description = Column(String)
+    description = Column(String(50))
 
 
 ############################################################
